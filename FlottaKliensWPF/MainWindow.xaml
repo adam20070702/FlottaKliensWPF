@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <StackPanel>
             <Label Content="Login Name"></Label>
             <TextBox Text="probaodon" x:Name="tbxLoginName"></TextBox>
@@ -14,6 +18,8 @@
             <TextBox Text="proba1" x:Name="tbxPassword"></TextBox>
             <Button x:Name="Login" Content="Login" Click="Login_Click"></Button>
             <TextBlock x:Name="tbxResult" Text="Nincs bejelentkezve"></TextBlock>
+            <Button x:Name="btnGetAll" Content="Users" Click="btnGetAll_Click"></Button>
         </StackPanel>
+        <DataGrid Name="dgrUsers" Grid.Column="1"></DataGrid>
     </Grid>
 </Window>

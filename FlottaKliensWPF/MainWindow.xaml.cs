@@ -1,5 +1,7 @@
 ﻿using FlottaKliensWPF.DTOs;
+using FlottaKliensWPF.Models;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Text.Unicode;
@@ -22,6 +24,7 @@ namespace FlottaKliensWPF
     
     public partial class MainWindow : Window
     {
+        List<User> userlist = new List<User>();
         private HttpClient client = new HttpClient()
         {
             BaseAddress = new Uri("http://localhost:5000")
@@ -29,6 +32,7 @@ namespace FlottaKliensWPF
         public MainWindow()
         {
             InitializeComponent();
+            dgrUsers.ItemsSource = userlist;
         }
 
         private async void Login_Click(object sender, RoutedEventArgs e)
@@ -43,6 +47,13 @@ namespace FlottaKliensWPF
             var valasz = await client.PostAsync("api/Login", body);
             tbxResult.Text = valasz.StatusCode.ToString();
 
+        }
+
+        private async void btnGetAll_Click(object sender, RoutedEventArgs e)
+        {
+            string url = "aoi/User/GetAllUser";
+            var users = await client.GetFromJsonAsync<List<User>>(url);
+            dgrUsers.ItemsSource = users;
         }
     }
 }

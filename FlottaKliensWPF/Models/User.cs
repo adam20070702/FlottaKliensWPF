@@ -29,4 +29,3 @@ namespace FlottaKliensWPF.Models
         public int Permission { get; set; }
     }
 }
-}
